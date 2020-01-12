@@ -1,0 +1,181 @@
+#! C:/Program Files/Nuke11.3v3/nuke-11.3.3.dll -nx
+#write_info Write1 file:"D:/Projects/MidnightProject/clips/MidnightProject_Scene1_Shot2_v001.mov" format:"1920 1080 1" chans:":rgba.red:rgba.green:rgba.blue:" framerange:"1 150" fps:"0" colorspace:"ACES - ACEScg" datatype:"unknown" transfer:"unknown" views:"main" colorManagement:"OCIO"
+version 11.3 v3
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-8" y="-8" w="1920" h="1017" maximized="1" screen="0">
+        <splitter orientation="1">
+            <split size="63"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1853"/>
+            <splitter orientation="2">
+                <split size="824"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                </dock>
+                <split size="145"/>
+                <dock id="" activePageId="DopeSheet.1">
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                    <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+    <window x="-1928" y="0" w="1918" h="1007" screen="1">
+        <splitter orientation="2">
+            <split size="1007"/>
+            <dock id="" activePageId="Viewer.1">
+                <page id="Viewer.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name D:/Projects/MidnightProject/nuke/scripts/MidnightProject_Scene1_Shot2-3_v001.nk
+ project_directory "\[python \{nuke.script_directory()\}]/../../"
+ frame 61
+ last_frame 150
+ lock_range true
+ fps 30
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement OCIO
+ OCIO_config aces_1.0.3
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT "ACES - ACEScg"
+ monitorLut ACES/sRGB
+ int8Lut "Utility - sRGB - Texture"
+ int16Lut "ACES - ACEScc"
+ logLut "Input - ADX - ADX10"
+ floatLut "ACES - ACEScg"
+}
+Read {
+ inputs 0
+ file_type png
+ file ./images/Scene1_Shot2_v001_v001/MidnightProject_Scene1_Shot2_v001_####.png
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ last 150
+ origlast 150
+ origset true
+ colorspace "ACES - ACEScg"
+ name Read1
+ xpos -151
+ ypos -225
+}
+Dot {
+ name Dot2
+ xpos -117
+ ypos -96
+}
+Constant {
+ inputs 0
+ channels rgb
+ color 1
+ name Constant1
+ xpos -54
+ ypos -154
+}
+Merge2 {
+ inputs 2
+ name Merge1
+ xpos -112
+ ypos -58
+}
+Dot {
+ name Dot1
+ xpos -78
+ ypos -13
+}
+Write {
+ file D:/Projects/MidnightProject/clips/MidnightProject_Scene1_Shot2_v001.mov
+ colorspace "ACES - ACEScg"
+ file_type mov
+ meta_codec avc1
+ meta_encoder mov32
+ mov32_codec avc1
+ mov32_pixel_format {{0} "default (YCbCr  8-bit 422 (2vuy))" "RGBA  8-bit" "YCbCr  8-bit 422 (2vuy)"}
+ mov64_codec ap4h
+ mov64_bitrate 20000
+ mov64_bitrate_tolerance 40000000
+ mov64_quality_min 2
+ mov64_quality_max 31
+ mov64_gop_size 12
+ mov64_b_frames 0
+ checkHashOnRead false
+ version 1
+ name Write1
+ xpos -165
+ ypos 201
+}
+Read {
+ inputs 0
+ file_type png
+ file ./images/Scene1_Shot3_v001_v001/MidnightProject_Scene1_Shot3_v001_####.png
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ last 150
+ origlast 150
+ origset true
+ colorspace "ACES - ACEScg"
+ name Read2
+ xpos 47
+ ypos -226
+}
+Dot {
+ name Dot3
+ xpos 81
+ ypos -97
+}
+Constant {
+ inputs 0
+ channels rgb
+ color 1
+ name Constant2
+ xpos 144
+ ypos -155
+}
+Merge2 {
+ inputs 2
+ name Merge2
+ xpos 86
+ ypos -59
+}
+Dot {
+ name Dot4
+ xpos 120
+ ypos -14
+}
+CornerPin2D {
+ to1 {{curve x1 -3480 x50 0} {curve x1 -4380 x50 0}}
+ to2 {{curve x1 1750 x50 1920} {curve x1 -140 x50 0}}
+ to3 {{curve x1 1750 x50 1920} {curve x1 940 x50 1080}}
+ to4 {{curve x1 -3330 x50 0} {curve x1 5140 x50 1080}}
+ invert false
+ from1 {0 0}
+ from2 {1920 0}
+ from3 {1920 1080}
+ from4 {0 1080}
+ name CornerPin2D1
+ xpos 86
+ ypos 15
+}
+Crop {
+ box {0 0 1920 1080}
+ name Crop1
+ xpos 86
+ ypos 41
+}
+Viewer {
+ frame 61
+ frame_range 1-150
+ fps 30
+ viewerProcess "Raw (ACES)"
+ name Viewer1
+ xpos -112
+ ypos 337
+}
