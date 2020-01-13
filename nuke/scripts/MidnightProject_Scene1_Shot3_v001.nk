@@ -5,11 +5,18 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 <layout version="1.0">
     <window x="-8" y="-8" w="1920" h="1017" maximized="1" screen="0">
         <splitter orientation="1">
-            <split size="63"/>
+            <split size="40"/>
             <dock id="" hideTitles="1" activePageId="Toolbar.1">
                 <page id="Toolbar.1"/>
             </dock>
-            <split size="1853"/>
+            <split size="694" stretch="1"/>
+            <splitter orientation="2">
+                <split size="973"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+            </splitter>
+            <split size="1178"/>
             <splitter orientation="2">
                 <split size="824"/>
                 <dock id="" activePageId="DAG.1" focus="true">
@@ -24,21 +31,12 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
             </splitter>
         </splitter>
     </window>
-    <window x="-1928" y="0" w="1918" h="1007" screen="1">
-        <splitter orientation="2">
-            <split size="1007"/>
-            <dock id="" activePageId="Viewer.1">
-                <page id="Viewer.1"/>
-            </dock>
-        </splitter>
-    </window>
 </layout>
 }
 Root {
  inputs 0
  name D:/Projects/MidnightProject/nuke/scripts/MidnightProject_Scene1_Shot3_v001.nk
  project_directory "\[python \{nuke.script_directory()\}]/../../"
- frame 176
  last_frame 150
  lock_range true
  fps 30
@@ -104,7 +102,7 @@ CornerPin2D {
  xpos 58
  ypos -132
 }
-set Ne3f22800 [stack 0]
+set Nd0b49000 [stack 0]
 Crop {
  box {0 0 1920 1080}
  name Crop1
@@ -131,7 +129,7 @@ PostageStamp {
  hide_input true
  postage_stamp true
 }
-set Ne2571400 [stack 0]
+set Nd0b7f000 [stack 0]
 Dot {
  name Dot6
  xpos -273
@@ -149,7 +147,7 @@ Dot {
  xpos -273
  ypos -116
 }
-push $Ne2571400
+push $Nd0b7f000
 RotoPaint {
  curves {{{v x3f99999a}
   {f 0}
@@ -411,7 +409,7 @@ Dot {
  xpos -117
  ypos 63
 }
-push $Ne3f22800
+push $Nd0b49000
 Dot {
  name Dot3
  xpos 92
@@ -442,6 +440,11 @@ Merge2 {
  xpos -28
  ypos 108
 }
+Clamp {
+ name Clamp1
+ xpos -28
+ ypos 134
+}
 Write {
  file D:/Projects/MidnightProject/clips/MidnightProject_Scene1_Shot3_v002.mov
  colorspace "ACES - ACEScg"
@@ -463,14 +466,14 @@ Write {
  version 4
  name Write1
  xpos -28
- ypos 149
+ ypos 178
 }
 Viewer {
- frame 176
+ frame 1
  frame_range 1-150
  fps 30
- viewerProcess "Raw (ACES)"
+ viewerProcess "sRGB (ACES)"
  name Viewer1
  xpos -28
- ypos 236
+ ypos 265
 }

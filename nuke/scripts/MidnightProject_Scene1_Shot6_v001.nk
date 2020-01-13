@@ -1,0 +1,107 @@
+#! C:/Program Files/Nuke11.3v3/nuke-11.3.3.dll -nx
+#write_info Write1 file:"D:/Projects/MidnightProject/clips/MidnightProject_Scene1_Shot5_v001.mov" format:"1920 1080 1" chans:":rgba.red:rgba.green:rgba.blue:" framerange:"1 150" fps:"0" colorspace:"ACES - ACEScg" datatype:"unknown" transfer:"unknown" views:"main" colorManagement:"OCIO"
+version 11.3 v3
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-8" y="-8" w="1920" h="1017" maximized="1" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="694" stretch="1"/>
+            <splitter orientation="2">
+                <split size="973"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+            </splitter>
+            <split size="1178"/>
+            <splitter orientation="2">
+                <split size="824"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                </dock>
+                <split size="145"/>
+                <dock id="" activePageId="DopeSheet.1">
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                    <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name D:/Projects/MidnightProject/nuke/scripts/MidnightProject_Scene1_Shot6_v001.nk
+ project_directory "\[python \{nuke.script_directory()\}]/../../"
+ frame 51
+ last_frame 150
+ lock_range true
+ fps 30
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement OCIO
+ OCIO_config aces_1.0.3
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT "ACES - ACEScg"
+ monitorLut ACES/sRGB
+ int8Lut "Utility - sRGB - Texture"
+ int16Lut "ACES - ACEScc"
+ logLut "Input - ADX - ADX10"
+ floatLut "ACES - ACEScg"
+}
+Read {
+ inputs 0
+ file_type png
+ file ./images/Scene1_Shot6_v001_v001/MidnightProject_Scene1_Shot6_v001_####.png
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ last 150
+ origlast 150
+ origset true
+ colorspace "ACES - ACEScg"
+ name Read1
+ selected true
+ xpos -112
+ ypos -101
+}
+Dot {
+ name Dot1
+ xpos -78
+ ypos 30
+}
+Write {
+ file D:/Projects/MidnightProject/clips/MidnightProject_Scene1_Shot5_v001.mov
+ colorspace "ACES - ACEScg"
+ file_type mov
+ meta_codec avc1
+ meta_encoder mov32
+ mov32_codec avc1
+ mov32_pixel_format {{0} "default (YCbCr  8-bit 422 (2vuy))" "RGBA  8-bit" "YCbCr  8-bit 422 (2vuy)"}
+ mov64_codec ap4h
+ mov64_bitrate 20000
+ mov64_bitrate_tolerance 40000000
+ mov64_quality_min 2
+ mov64_quality_max 31
+ mov64_gop_size 12
+ mov64_b_frames 0
+ last 150
+ use_limit true
+ checkHashOnRead false
+ version 4
+ name Write1
+ xpos -112
+ ypos 90
+}
+Viewer {
+ frame 51
+ frame_range 1-150
+ fps 30
+ viewerProcess "Raw (ACES)"
+ name Viewer1
+ xpos -112
+ ypos 232
+}
